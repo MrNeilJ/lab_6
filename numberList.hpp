@@ -20,13 +20,22 @@ private:
 		}
 	};
 	ListNode *head;
+	ListNode *tail;
 
 public:
-	numberList() {head = nullptr;}
+	numberList() {head = nullptr; tail = nullptr;}
 	~numberList();
 	void add(double number);
+
+	// Head Functions
+	void addHead(double number);
 	void removeHead();
+
+	// Tail Functions
+	void addTail(double number);
 	void removeTail();
+
+	// Display functions
 	void displayList() const;
 	void displayListReverse() const;
 };

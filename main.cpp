@@ -37,7 +37,7 @@ int main() {
 			// Add a new node to the head
 			std::cout << "Type in the number you'd like to add to the list: ";
 			number = getInt();
-			myList.add(number);
+			myList.addHead(number);
 
 			// Show the updated list
 			std::cout << "\n\nHere is an updated copy of your list:" << std::endl;
@@ -46,15 +46,27 @@ int main() {
 		}
 		else if (mainChoice == 2) {
 			// Delete from the head(the first node in the list.
+			myList.removeHead();
 
+			// Show the updated list
+			std::cout << "\n\nHere is an updated copy of your list:" << std::endl;
+			myList.displayList();
+			std::cout << "\n" << std::endl;
 		}
 		else if (mainChoice == 3) {
 			// Delete from the tail(the last node in the list
+			myList.removeTail();
+
+			// Show the updated list
+			std::cout << "\n\nHere is an updated copy of your list:" << std::endl;
+			myList.displayList();
+			std::cout << "\n" << std::endl;
 
 		}
 		else if (mainChoice == 4) {
 			// Traverse the list reversely, that is to print the node from back to front
-
+			myList.displayListReverse();
+			std::cout << "\n" << std::endl;
 		}
 		else if (mainChoice == 5) {
 			std::cout << "Thanks for using the list linker, have a great day!";

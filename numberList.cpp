@@ -21,7 +21,7 @@ numberList::~numberList() {
 
 void numberList::add(double number) {
 	if (head == nullptr) {
-		head = new ListNode(number);
+		head = new ListNode(number, nullptr, head);
 	}
 	else {
 		ListNode *nodePtr = head;
@@ -29,17 +29,71 @@ void numberList::add(double number) {
 			nodePtr = nodePtr->next;
 		}
 
-		nodePtr->next = new ListNode(number);
+		nodePtr->next = new ListNode(number, nullptr, nodePtr);
 
 	}
 }
 
-void numberList::removeHead() {
+/****************************************************
+ * HEAD FUNCTIONS
+ ****************************************************/
+void numberList::addHead(double number) {
+	if (head == nullptr) {
+		head = new ListNode(number, tail, nullptr);
+		tail = head;
+	}
+	else {
+		ListNode *nodePtr = head;
+		head = new ListNode(number, nodePtr);
+		nodePtr->prev = head;
+	}
+}
 
+void numberList::removeHead() {
+	ListNode 	*nodePtr;
+
+	if (!head){
+		return;
+	}
+	// Mark the old head location for later
+	nodePtr = head;
+
+	// Move the location of the head location up one spot
+	head = head->next;
+
+	// Delete the old head location
+	delete nodePtr;
+}
+
+
+/****************************************************
+ * TAIL FUNCTIONS
+ ****************************************************/
+void numberList::addTail(double number) {
+	if (tail == nullptr) {
+		tail = new ListNode(number, tail, nullptr);
+	}
+	else {
+		ListNode *nodePtr = head;
+		head = new ListNode(number, nodePtr);
+	}
 }
 
 void numberList::removeTail() {
+	ListNode 	*nodePtr;
 
+	if (!tail){
+		return;
+	}
+	// Mark the old head location for later
+	nodePtr = tail;
+
+	// Move the location of the head location up one spot
+	tail = tail->prev;
+	tail->next = nullptr;
+
+	// Delete the old head location
+	delete nodePtr;
 }
 
 void numberList::displayList() const {
@@ -53,5 +107,11 @@ void numberList::displayList() const {
 }
 
 void numberList::displayListReverse() const {
-	ListNode *nodePtr = head;
+	ListNode *nodePtr = tail;
+	while (nodePtr) {
+		// Print the value in the current node
+		std::cout << nodePtr->value << " ";
+		// Move to the next node
+		nodePtr = nodePtr->prev;
+	}
 }
