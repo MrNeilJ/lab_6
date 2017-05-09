@@ -55,14 +55,22 @@ void numberList::removeHead() {
 	if (!head){
 		return;
 	}
-	// Mark the old head location for later
-	nodePtr = head;
+	else if (head == tail) {
+		head = nullptr;
+		tail = nullptr;
+	}
+	else{
+		// Mark the old head location for later
+		nodePtr = head;
 
-	// Move the location of the head location up one spot
-	head = head->next;
+		// Move the location of the head location up one spot
+		head = head->next;
+		head->prev = nullptr;
 
-	// Delete the old head location
-	delete nodePtr;
+		// Delete the old head location
+		delete nodePtr;
+	}
+
 }
 
 
@@ -85,18 +93,30 @@ void numberList::removeTail() {
 	if (!tail){
 		return;
 	}
-	// Mark the old head location for later
-	nodePtr = tail;
 
-	// Move the location of the head location up one spot
-	tail = tail->prev;
-	tail->next = nullptr;
+	else if (head == tail) {
+		head = nullptr;
+		tail = nullptr;
+	}
+	else{
+		// Mark the old head location for later
+		nodePtr = tail;
 
-	// Delete the old head location
-	delete nodePtr;
+		// Move the location of the head location up one spot
+		tail = tail->prev;
+		tail->next = nullptr;
+
+		// Delete the old head location
+		delete nodePtr;
+	}
+
 }
 
 void numberList::displayList() const {
+	if (!head) {
+		std::cout << "Nothing in this list.";
+		return;
+	}
 	ListNode *nodePtr = head;
 	while (nodePtr) {
 		// Print the value in the current node
@@ -107,6 +127,10 @@ void numberList::displayList() const {
 }
 
 void numberList::displayListReverse() const {
+	if (!head) {
+		std::cout << "Nothing in this list.";
+		return;
+	}
 	ListNode *nodePtr = tail;
 	while (nodePtr) {
 		// Print the value in the current node
