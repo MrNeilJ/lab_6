@@ -1,3 +1,14 @@
+/**************************************************************
+ * Author: Neil Johnson
+ *
+ * Date: 4.14.2017
+ *
+ * Description: This is the main file for the linked list program.
+ * In here we create an easy to interact with menu that allows the
+ * user to build a linked list and even remove items from the head
+ * and the tail of the list.
+ **************************************************************/
+
 #include <iostream>
 #include "menuMaker.hpp"
 #include "numberList.hpp"
@@ -23,8 +34,6 @@ int main() {
 	/**************************************
 	 * LINKED LIST CREATOR
 	 **************************************/
-
-
 	numberList myList;
 	int number;
 

@@ -23,7 +23,10 @@ private:
 	ListNode *tail;
 
 public:
-	numberList() {head = nullptr; tail = nullptr;}
+	// Constructor
+	numberList();
+
+	// Destructor
 	~numberList();
 	void add(double number);
 

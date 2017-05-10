@@ -1,10 +1,32 @@
-//
-// Created by Neil on 5/9/2017.
-//
+/**************************************************************
+ * Author: Neil Johnson
+ *
+ * Date: 4.14.2017
+ *
+ * Description: This is the file that assists with the creation
+ * of the linked list.  In this file we are able to create a
+ * stucture for list items and link them together.  We can even
+ * add, and remove items from the front and back of the list.
+ **************************************************************/
 
 #include <iostream>
 #include "numberList.hpp"
 
+
+/**************************************************************
+ *                  numberList::numberList()
+ *	Constructor for the object, builds the object with nullptrs
+ **************************************************************/
+numberList::numberList() {
+	head = nullptr;
+	tail = nullptr;
+}
+
+/**************************************************************
+ *                  numberList::~numberList()
+ *	Destructor for the object, loops through all of the items
+ *	linked together, freeing up their memory
+ **************************************************************/
 numberList::~numberList() {
 	ListNode *nodePtr = head;
 	while (nodePtr != nullptr) {
@@ -19,6 +41,12 @@ numberList::~numberList() {
 	}
 }
 
+
+/**************************************************************
+ *                  numberList::add()
+ *	Generic add feature, was designed to allow the user to add
+ *	an item to the end of a single linked list.
+ **************************************************************/
 void numberList::add(double number) {
 	if (head == nullptr) {
 		head = new ListNode(number, nullptr, head);
@@ -37,6 +65,11 @@ void numberList::add(double number) {
 /****************************************************
  * HEAD FUNCTIONS
  ****************************************************/
+/**************************************************************
+*                  numberList::addHead()
+*	Adds the item to the head of the linked list and then links
+ *	it to the rest of the linked list without losing it.
+**************************************************************/
 void numberList::addHead(double number) {
 	if (head == nullptr) {
 		head = new ListNode(number, tail, nullptr);
@@ -49,6 +82,11 @@ void numberList::addHead(double number) {
 	}
 }
 
+/**************************************************************
+ *                  numberList::removeHead()
+ *	Removes the first item on the linked list and moves the head
+ *	pointer to the item next to it.
+ **************************************************************/
 void numberList::removeHead() {
 	ListNode 	*nodePtr;
 
@@ -73,10 +111,14 @@ void numberList::removeHead() {
 
 }
 
-
 /****************************************************
  * TAIL FUNCTIONS
  ****************************************************/
+/**************************************************************
+*                  numberList::addTail()
+*	Adds the item to the tail of the linked list and then links
+*	it to the rest of the linked list without losing it.
+**************************************************************/
 void numberList::addTail(double number) {
 	if (tail == nullptr) {
 		tail = new ListNode(number, tail, nullptr);
@@ -87,6 +129,11 @@ void numberList::addTail(double number) {
 	}
 }
 
+/**************************************************************
+ *                  numberList::removeTail()
+ *	Removes the last item on the linked list and moves the tail
+ *	pointer to the item before it.
+ **************************************************************/
 void numberList::removeTail() {
 	ListNode 	*nodePtr;
 
@@ -109,9 +156,16 @@ void numberList::removeTail() {
 		// Delete the old head location
 		delete nodePtr;
 	}
-
 }
 
+/****************************************************
+ * DISPLAY FUNCTIONS
+ ****************************************************/
+/**************************************************************
+ *                  numberList::displayList()
+ *	Prints the items out from first item to last item.  If there
+ *	is nothing in the list then notify the user
+ **************************************************************/
 void numberList::displayList() const {
 	if (!head) {
 		std::cout << "Nothing in this list.";
@@ -126,6 +180,11 @@ void numberList::displayList() const {
 	}
 }
 
+/**************************************************************
+ *                  numberList::displayListReverse()
+ *	Prints the items out from last item to first item.  If there
+ *	is nothing in the list then notify the user
+ **************************************************************/
 void numberList::displayListReverse() const {
 	if (!head) {
 		std::cout << "Nothing in this list.";
